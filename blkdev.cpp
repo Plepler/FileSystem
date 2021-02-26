@@ -10,7 +10,8 @@
 #include <stdexcept>
 #include <errno.h>
 
-BlockDeviceSimulator::BlockDeviceSimulator(std::string fname) {
+BlockDeviceSimulator::BlockDeviceSimulator(std::string fname) 
+{
 
 	// if file doesn't exist, create it
 	if (access(fname.c_str(), F_OK) == -1) {
@@ -37,16 +38,19 @@ BlockDeviceSimulator::BlockDeviceSimulator(std::string fname) {
 		throw std::runtime_error(strerror(errno));
 }
 
-BlockDeviceSimulator::~BlockDeviceSimulator() {
+BlockDeviceSimulator::~BlockDeviceSimulator() 
+{
 	munmap(filemap, DEVICE_SIZE);
 	close(fd);
 }
 
-void BlockDeviceSimulator::read(int addr, int size, char *ans) {
+void BlockDeviceSimulator::read(int addr, int size, char *ans) 
+{
 	memcpy(ans, filemap + addr, size);
 }
 
-void BlockDeviceSimulator::write(int addr, int size, const char *data) {
+void BlockDeviceSimulator::write(int addr, int size, const char *data) 
+{
 	memcpy(filemap + addr, data, size);
 }
 

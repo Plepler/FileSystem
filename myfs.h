@@ -9,7 +9,8 @@
 #define FILE_CAPACITY 256
 #define FOLDER_CAPACITY 4096
 
-class MyFs {
+class MyFs 
+{
 public:
 	MyFs(BlockDeviceSimulator *blkdevsim_);
 
